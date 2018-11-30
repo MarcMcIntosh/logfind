@@ -3,15 +3,16 @@
 // #include <stdlib.h>
 #include <string.h>
 
-void find_word_in_text(char * word, char * text)
+int find_word_in_text(char * word, char * text)
 {
 	assert(word);
 	assert(text);
 	char * word_found = NULL;
 	word_found = strstr(text, word);
-	if (word_found) {
+	/* if (word_found) {
 		printf("%s\n", text);
-	}
+	} */
+	return word_found ? 1 : 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -22,8 +23,24 @@ int main(int argc, char *argv[]) {
 	
 	// remove this later
 	char * text_to_search = "Some foo text";
+	
 	// char *words_found = NULL;
-	find_word_in_text(argv[1], text_to_search);
+	
+	unsigned int word_count = argc - 1;
+	int i = 1;
+	do {
+		printf("Searching for %s\n", argv[i]);
+		word_count -= find_word_in_text(argv[i], text_to_search);
+		i++;
+	} while (i < argc);
+
+	if(word_count == 0) {
+		printf(text_to_search);
+	}
+
+
+
+	// find_word_in_text(argv[1], text_to_search);
 	//int word_found = find_word_in_text(first_word, text_to_search);
 	
 	// Words anded to gether
