@@ -1,7 +1,7 @@
 CFLAGS = -Wall -g
 
 .logfind:
-	$(shell echo spec.md > $@)                                                                         
+	$(shell cat README.md CHANGELOG.md > $@)                                                                         
                                        
 
 all: clean .logfind logfind 

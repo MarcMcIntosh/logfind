@@ -20,15 +20,16 @@ int main(int argc, char *argv[]) {
 
 	// char * first_word = argv[1];
 	
+	// remove this later
 	char * text_to_search = "Some foo text";
 	// char *words_found = NULL;
 	find_word_in_text(argv[1], text_to_search);
 	//int word_found = find_word_in_text(first_word, text_to_search);
 	
 	// Words anded to gether
-	char * anded = NULL;
-	anded = strstr(text_to_search, "foo text");
-	if(anded) { printf("Added should not have worked"); }
+	// char * anded = NULL;
+	// anded = strstr(text_to_search, "foo text");
+	// if(anded) { printf("Added should not have worked"); }
 
 	
 	return 0;

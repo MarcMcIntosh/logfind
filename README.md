@@ -12,15 +12,3 @@ features:
   5: You should output the matching lines as you scan, and try to match them as fast as possible.
 
 
-This could be a thing to practice TDD on?
-
-CHANGELOG
-[x] It should error if no search strings are provide.
-[x] It should search test for the occurance of a word.
-[x] If it finds the word it should print out the string.
-[ ] Throws error if it connot find configuration file
-[ ] It should open a file in the current directory named .logfind
-[ ] core functionality is to search one string for an other.
-
-TODO
-[ ] create an .logfind file for testing.
