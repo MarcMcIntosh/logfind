@@ -15,7 +15,7 @@ features:
 This could be a thing to practice TDD on?
 
 CHANGELOG
-[ ] It should error if no search strings are provide.
+[x] It should error if no search strings are provide.
 [ ] It should open a file in the current directory named .logfind
 [ ] core functionality is to search one string for an other.
 
