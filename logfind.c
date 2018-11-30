@@ -15,6 +15,21 @@ int find_word_in_text(char * word, char * text)
 	return word_found ? 1 : 0;
 }
 
+void find_all_words_and_print_text(int argc, char *argv[], char *text)
+{
+	unsigned int number_of_words_to_find = argc - 1;
+	unsigned int i = 1;
+	do {
+		number_of_words_to_find -= find_word_in_text(argv[i], text);
+		i++;
+	} while (i < argc);
+
+	if(number_of_words_to_find == 0) {
+		printf("%s\n", text);
+	}
+}
+
+
 int main(int argc, char *argv[]) {
 	assert(argc > 1);
 
@@ -23,10 +38,12 @@ int main(int argc, char *argv[]) {
 	
 	// remove this later
 	char * text_to_search = "Some foo text";
-	
+
+	find_all_words_and_print_text(argc, argv, text_to_search);
+
 	// char *words_found = NULL;
 	
-	unsigned int word_count = argc - 1;
+	/* unsigned int word_count = argc - 1;
 	int i = 1;
 	do {
 		printf("Searching for %s\n", argv[i]);
@@ -36,7 +53,7 @@ int main(int argc, char *argv[]) {
 
 	if(word_count == 0) {
 		printf(text_to_search);
-	}
+	} */
 
 
 
