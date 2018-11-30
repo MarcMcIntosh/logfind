@@ -3,15 +3,30 @@
 // #include <stdlib.h>
 #include <string.h>
 
+int find_word_in_text(char * word, char * text)
+{
+	assert(word);
+	assert(text);
+	char * word_found = NULL;
+	word_found = strstr(text, word);
+	
+	return word_found ? 1 : 0;
+}
+
 int main(int argc, char *argv[]) {
 	assert(argc > 1);
 	
 	char * first_word = argv[1];
+	char * text_to_search = "Some foo text";
+	// char *words_found = NULL;
 	
-	char *words_found = NULL;
-	words_found = strstr("some foo text to search", first_word);
+	int word_found = find_word_in_text(first_word, text_to_search);
 	
-	if(words_found) { printf("Found "); }
+	if (word_found) {
+		printf("Found ");
+	} else {
+		printf("Not found");
+	}
 	return 0;
 	/* FILE * configuration_file = fopen(".logfind", "r");
 	assert(configuration_file);
