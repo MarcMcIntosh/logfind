@@ -21,10 +21,10 @@ void search_file_for_words(char *file_name, int or_mode, char *words_to_find[]) 
 	
 	char * text = calloc(MAX_LINE, 1);
 	FILE * file = fopen(file_name, text);
-
 	assert(file);
+
 	int number_of_words_found = 0;
-	int i = start;
+	
 
 }
 
