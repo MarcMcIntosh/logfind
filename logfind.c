@@ -15,26 +15,47 @@ int find_word_in_text(char * word, char * text)
 	return word_found ? 1 : 0;
 }
 
+void find_words_in_text(int argc, char *argv[], char *text, int start, int limit) {
+	int number_of_words_found = 0;
+	int i = start;
+	do {
+		printf("searching: %s\t, for: %s\t, times: %d\n", argv[i], text, limit);
+
+		number_of_words_found += find_word_in_text(argv[i], text);
+		i++;
+	} while(number_of_words_found < limit && i < argc);
+
+	if(number_of_words_found == limit) {
+		printf("%s\n", text);
+	}
+}
+
 void find_any_word_and_print_text(int argc, char *argv[], char *text)
 {
-	unsigned int word_found = 0;
-	for (int i = 0; word_found == 0 && i < argc ; i++) {
-		word_found += find_word_in_text(argv[i], text);
-	}
+	unsigned int number_of_words_found = 0;
+	unsigned int i = 1;
+	int limit = 1;
+	do {
+		number_of_words_found += find_word_in_text(argv[i], text);
+		i++;
+	} while (number_of_words_found < limit && i < argc);
 	
-	if (word_found) { printf("%s\n", text); }
+	if (number_of_words_found == limit) {
+		printf("%s\n", text);
+	}
 }
 
 void find_all_words_and_print_text(int argc, char *argv[], char *text)
 {
-	unsigned int number_of_words_to_find = argc - 1;
+	unsigned int number_of_words_found = 0;
 	unsigned int i = 1;
+	int limit = argc - 1;
 	do {
-		number_of_words_to_find -= find_word_in_text(argv[i], text);
+		number_of_words_found += find_word_in_text(argv[i], text);
 		i++;
-	} while (i < argc);
+	} while (number_of_words_found < limit && i < argc);
 
-	if(number_of_words_to_find == 0) {
+	if(number_of_words_found == limit) {
 		printf("%s\n", text);
 	}
 }
@@ -48,6 +69,7 @@ int main(int argc, char *argv[]) {
 
 
 	int has_or_flag = strcmp(argv[1], "-o");
+	
 	if(has_or_flag == 0) {
 		assert(argc > 2);
 		find_any_word_and_print_text(argc, argv, text_to_search);
