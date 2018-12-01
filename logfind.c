@@ -3,6 +3,8 @@
 // #include <stdlib.h>
 #include <string.h>
 
+const size_t MAX_LINE_SIZE = 1024;
+
 int find_word_in_text(char * word, char * text)
 {
 	assert(word);
@@ -15,19 +17,15 @@ int find_word_in_text(char * word, char * text)
 	return word_found ? 1 : 0;
 }
 
-void find_words_in_text(int argc, char *argv[], char *text, int start, int limit) {
+void search_file_for_words(char *file_name, int or_mode, char *words_to_find[])  {
+	
+	char * text = calloc(MAX_LINE, 1);
+	FILE * file = fopen(file_name, text);
+
+	assert(file);
 	int number_of_words_found = 0;
 	int i = start;
-	do {
-		printf("searching: %s\t, for: %s\t, times: %d\n", argv[i], text, limit);
 
-		number_of_words_found += find_word_in_text(argv[i], text);
-		i++;
-	} while(number_of_words_found < limit && i < argc);
-
-	if(number_of_words_found == limit) {
-		printf("%s\n", text);
-	}
 }
 
 void find_any_word_and_print_text(int argc, char *argv[], char *text)
@@ -35,6 +33,7 @@ void find_any_word_and_print_text(int argc, char *argv[], char *text)
 	unsigned int number_of_words_found = 0;
 	unsigned int i = 1;
 	int limit = 1;
+	ch
 	do {
 		number_of_words_found += find_word_in_text(argv[i], text);
 		i++;
@@ -61,25 +60,36 @@ void find_all_words_and_print_text(int argc, char *argv[], char *text)
 }
 
 
+
 int main(int argc, char *argv[]) {
 	assert(argc > 1);
 	
-	FILE * configuration_file = fopen(".logfind", "r");
-	assert(configuration_file);
+	// FILE * configuration_file = fopen(".logfind", "r");
+	// assert(configuration_file);
 	
 
 	// remove this later
-	char * text_to_search = "Some foo text";
-
-
 	int has_or_flag = strcmp(argv[1], "-o");
 	
+	int required_matches = (has_or_flag == 0) ? argc - 1 : 1;
+
+	// char * text_to_search = "Some foo text";
+	
+	char * text_to_search = 
+	FILE * hard_coded = NULL;
+	hard_coded = fopen("README.md", "r");
+	assert(hard_coded);
+
+	
+
+
 	if(has_or_flag == 0) {
 		assert(argc > 2);
 		find_any_word_and_print_text(argc, argv, text_to_search);
 	} else {
 		find_all_words_and_print_text(argc, argv, text_to_search);
 	}
+
 
 	// char *words_found = NULL;
 	
