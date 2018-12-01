@@ -14,10 +14,11 @@ void print_usage ()
 
 }
 
-void print_file(FILE * buffer) 
+void print_file(FILE * file)
 {
+	rewind(file);
 	char character;
-	while((character = fgetc(buffer)) != EOF) {
+	while((character = fgetc(file)) != EOF) {
 		printf("%c", character);
 	}
 }
@@ -27,9 +28,11 @@ void search_file_for_words(char *file_name, char *words[], int required_matches)
 	debug("opening file: %s", file_name);
 	int total_matches = 0;
 
-	FILE * file = fopen(file_name, "r");
+	FILE * file = NULL;
+	file = fopen(file_name, "r");
 	assert(file);
-	char * buffer = calloc(MAX_BUFFER_SIZE, 0);
+	char * buffer = NULL;
+	buffer = calloc(MAX_BUFFER_SIZE, 0);
 	while(fgets(buffer, MAX_BUFFER_SIZE - 1, file) != NULL) {
 		
 		for(int i = 0; words[i]; i++) {
@@ -42,6 +45,14 @@ void search_file_for_words(char *file_name, char *words[], int required_matches)
 		}
 	}
 
+	free(buffer);
+	buffer = NULL;
+	
+	if(total_matches >= required_matches) {
+		debug("### Matches found in file ### %s", file_name);
+		print_file(file);
+	}
+	
 }
 
 
@@ -80,6 +91,8 @@ int main(int argc, char*argv[])
 	print_file(current_file);
 	fclose(current_file);
 	free(current_file); */
-	
+
+	// checking search file for words words
+	search_file_for_words("README.md", argv, number_of_matches);
 	return 0;
 }
