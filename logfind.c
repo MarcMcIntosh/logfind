@@ -17,23 +17,11 @@ int find_word_in_text(char * word, char * text)
 	return word_found ? 1 : 0;
 }
 
-void search_file_for_words(char *file_name, int or_mode, char *words_to_find[])  {
-	
-	char * text = calloc(MAX_LINE, 1);
-	FILE * file = fopen(file_name, text);
-	assert(file);
-
-	int number_of_words_found = 0;
-	
-
-}
-
 void find_any_word_and_print_text(int argc, char *argv[], char *text)
 {
 	unsigned int number_of_words_found = 0;
 	unsigned int i = 1;
 	int limit = 1;
-	ch
 	do {
 		number_of_words_found += find_word_in_text(argv[i], text);
 		i++;
@@ -59,8 +47,6 @@ void find_all_words_and_print_text(int argc, char *argv[], char *text)
 	}
 }
 
-
-
 int main(int argc, char *argv[]) {
 	assert(argc > 1);
 	
@@ -71,20 +57,20 @@ int main(int argc, char *argv[]) {
 	// remove this later
 	int has_or_flag = strcmp(argv[1], "-o");
 	
-	int required_matches = (has_or_flag == 0) ? argc - 1 : 1;
+	if(has_or_flag == 0) { assert(argc > 2); }
 
-	// char * text_to_search = "Some foo text";
+	// int required_matches = (has_or_flag == 0) ? argc - 1 : 1;
+	// int total_matches = 0;
+
+	char * text_to_search = "Some foo text";
 	
-	char * text_to_search = 
 	FILE * hard_coded = NULL;
 	hard_coded = fopen("README.md", "r");
 	assert(hard_coded);
 
-	
-
 
 	if(has_or_flag == 0) {
-		assert(argc > 2);
+		// assert(argc > 2);
 		find_any_word_and_print_text(argc, argv, text_to_search);
 	} else {
 		find_all_words_and_print_text(argc, argv, text_to_search);
