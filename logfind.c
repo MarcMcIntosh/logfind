@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 const size_t MAX_BUFFER_SIZE = 1024;
 
@@ -13,11 +14,34 @@ void print_usage ()
 
 }
 
-void print_file(FILE * buffer) {
+void print_file(FILE * buffer) 
+{
 	char character;
 	while((character = fgetc(buffer)) != EOF) {
 		printf("%c", character);
 	}
+}
+
+void search_file_for_words(char *file_name, char *words[], int required_matches)
+{
+	debug("opening file: %s", file_name);
+	int total_matches = 0;
+
+	FILE * file = fopen(file_name, "r");
+	assert(file);
+	char * buffer = calloc(MAX_BUFFER_SIZE, 0);
+	while(fgets(buffer, MAX_BUFFER_SIZE - 1, file) != NULL) {
+		
+		for(int i = 0; words[i]; i++) {
+			debug("Searching %s for instances of: %s", file_name, words[i]);  
+			char * word_is_in_buffer = strstr(buffer, words[i]);
+
+			if(word_is_in_buffer) {
+				total_matches++;
+			}
+		}
+	}
+
 }
 
 
@@ -51,11 +75,11 @@ int main(int argc, char*argv[])
 
 	debug("Number of matches required: %d", number_of_matches);
 
-	/* checking print_file works */
+	/* checking print_file works 
 	FILE * current_file = fopen("README.md", "r");
 	print_file(current_file);
 	fclose(current_file);
-	free(current_file);
+	free(current_file); */
 	
 	return 0;
 }
