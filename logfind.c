@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+const size_t MAX_BUFFER_SIZE = 1024;
+
 void print_usage ()
 {
 	printf("[USAGE] ./logfind [-o] [TERM] [TERM] [TERM]\n");
@@ -10,6 +12,14 @@ void print_usage ()
 	printf("\t-o\t Preform an or seach\n");
 
 }
+
+void print_file(FILE * buffer) {
+	char character;
+	while((character = fgetc(buffer)) != EOF) {
+		printf("%c", character);
+	}
+}
+
 
 int main(int argc, char*argv[])
 {
@@ -37,4 +47,15 @@ int main(int argc, char*argv[])
 
 	debug("First word for function: %s", *argv);
 
+	int number_of_matches = (has_or_flag) ? 1 : argc - 1;
+
+	debug("Number of matches required: %d", number_of_matches);
+
+	/* checking print_file works */
+	FILE * current_file = fopen("README.md", "r");
+	print_file(current_file);
+	fclose(current_file);
+	free(current_file);
+	
+	return 0;
 }
