@@ -10,6 +10,7 @@ void print_usage ()
 	printf("\t-o\t Preform an or seach\n");
 
 }
+
 int main(int argc, char*argv[])
 {
 	// check args
@@ -27,4 +28,13 @@ int main(int argc, char*argv[])
 		print_usage();
 		return 1;
 	}
+
+	// Knock undeed words from argv
+	debug("Furst argment passed to function: %s", *argv);
+	
+	argv++;
+	if(has_or_flag) { argv++; }
+
+	debug("First word for function: %s", *argv);
+
 }

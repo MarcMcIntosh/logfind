@@ -1,6 +1,7 @@
 
 # CHANGELOG
 + [x] It should error if no search strings are provide.
++ [x] It can tell which arguments to use
 + [] It should search test for the occurance of a word.
 + [] If it finds the word it should print out the string.
 + [] It can preform an _and_ search by default
