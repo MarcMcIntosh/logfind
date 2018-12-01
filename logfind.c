@@ -36,7 +36,7 @@ void search_file_for_words(char *file_name, char *words[], int required_matches)
 	while(fgets(buffer, MAX_BUFFER_SIZE - 1, file) != NULL) {
 		
 		for(int i = 0; words[i]; i++) {
-			debug("Searching %s for instances of: %s", file_name, words[i]);  
+			// debug("Searching %s for instances of: %s", file_name, words[i]);  
 			char * word_is_in_buffer = strstr(buffer, words[i]);
 
 			if(word_is_in_buffer) {
