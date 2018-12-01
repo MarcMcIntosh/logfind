@@ -63,6 +63,10 @@ void find_all_words_and_print_text(int argc, char *argv[], char *text)
 
 int main(int argc, char *argv[]) {
 	assert(argc > 1);
+	
+	FILE * configuration_file = fopen(".logfind", "r");
+	assert(configuration_file);
+	
 
 	// remove this later
 	char * text_to_search = "Some foo text";
