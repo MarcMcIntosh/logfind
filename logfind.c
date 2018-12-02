@@ -55,6 +55,13 @@ void search_file_for_words(char *file_name, char *words[], int required_matches)
 	
 }
 
+void files_to_search_from_config() {
+	char * buffer = calloc(MAX_BUFFER_SIZE, 0);
+	FILE * config_file = NULL;
+	
+	assert(config_file);	
+	
+}
 
 int main(int argc, char*argv[])
 {
@@ -92,7 +99,11 @@ int main(int argc, char*argv[])
 	fclose(current_file);
 	free(current_file); */
 
+
 	// checking search file for words words
 	search_file_for_words("README.md", argv, number_of_matches);
+	
+	files_to_search_from_config();
+	
 	return 0;
 }
