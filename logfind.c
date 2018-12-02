@@ -23,6 +23,7 @@ void print_file(FILE * file)
 	}
 }
 
+
 void search_file_for_words(char *file_name, char *words[], int required_matches)
 {
 	debug("opening file: %s", file_name);
@@ -33,6 +34,7 @@ void search_file_for_words(char *file_name, char *words[], int required_matches)
 	assert(file);
 	char * buffer = NULL;
 	buffer = calloc(MAX_BUFFER_SIZE, 0);
+	
 	while(fgets(buffer, MAX_BUFFER_SIZE - 1, file) != NULL) {
 		
 		for(int i = 0; words[i]; i++) {
@@ -45,23 +47,34 @@ void search_file_for_words(char *file_name, char *words[], int required_matches)
 		}
 	}
 
-	free(buffer);
-	buffer = NULL;
+
+	// free(buffer);
+	// buffer = NULL;
 	
 	if(total_matches >= required_matches) {
 		debug("### Matches found in file ### %s", file_name);
 		print_file(file);
 	}
-	
+		
 }
 
-void files_to_search_from_config() {
+void files_to_search_from_config(char *argv[], int number_of_matches) {
 	char * buffer = calloc(MAX_BUFFER_SIZE, 0);
 	FILE * config_file = NULL;
 	config_file = fopen(".logfind", "r");
 	assert(config_file);
 
-
+	while(fgets(buffer, MAX_BUFFER_SIZE - 1, config_file) != NULL) {
+		debug("Reading Files from config: %s", buffer);
+		
+		char * file_name;
+		// romove trailing new line
+		file_name = strtok(buffer, "\n");
+		
+		if(file_name != NULL) {
+			search_file_for_words(file_name, argv, number_of_matches);
+		}
+	}
 	
 }
 
@@ -103,9 +116,9 @@ int main(int argc, char*argv[])
 
 
 	// checking search file for words words
-	search_file_for_words("README.md", argv, number_of_matches);
+	// search_file_for_words("README.md", argv, number_of_matches);
 	
-	files_to_search_from_config();
+	files_to_search_from_config(argv, number_of_matches);
 	
 	return 0;
 }
