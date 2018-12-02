@@ -46,9 +46,8 @@ void search_file_for_words(char *file_name, char *words[], int required_matches)
 			}
 		}
 	}
-
-
-	// free(buffer);
+	
+	free(buffer);
 	// buffer = NULL;
 	
 	if(total_matches >= required_matches) {
@@ -75,6 +74,8 @@ void files_to_search_from_config(char *argv[], int number_of_matches) {
 			search_file_for_words(file_name, argv, number_of_matches);
 		}
 	}
+
+	free(buffer);
 	
 }
 
