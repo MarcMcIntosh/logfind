@@ -1,8 +1,7 @@
 CFLAGS = -Wall -g
 
 .logfind:
-	$(shell echo "README.md" > $@)
-	$(shell echo "CHANGELOG.md" >> $@)                              
+	$(shell echo "*.md" > $@)
 
 
 all: clean .logfind logfind 
