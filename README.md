@@ -5,10 +5,8 @@ It's a project to build a tool called logfind.
 the tool takes an input and search the common places that log files are on the system and check them for occurrences of the input, if an occurrence is found the file is printed out.
 
 features:
-  1: This tool takes any sequence of words and assumes I mean "and" for them.
-  2: It takes an optional argument of -o if the parameters are meant to be "or" logic 
-  3: It loads the list of allowed log files from ~/.logfind
-  4: The list of file names can be anything that the glob function allows. Refer to man 3 glob to see how this works. It is suggested to start with just a flat list of exact files. and then add glob functionality
-  5: You should output the matching lines as you scan, and try to match them as fast as possible.
+* This tool takes any sequence of words and assumes I mean "and" for them.  So ``logfind zedshaw smart guy`` will find all files that have ``zedshaw`` *and* ``smart`` *and* ``guy`` in them.
+* It takes an optional argument of ``-o`` if the parameters are meant to be *or* logic.
+* It loads the list of allowed log files from ``~/.logfind``.
 
 
